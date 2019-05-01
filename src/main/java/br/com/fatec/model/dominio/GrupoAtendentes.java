@@ -15,7 +15,7 @@ public class GrupoAtendentes extends EntidadeDominio{
 	public GrupoAtendentes(String nome, List<Funcionario> funcionarios) {
 		super();
 		this.nome = nome;
-		this.funcionarios = funcionarios;
+		this.setFuncionarios(funcionarios);
 	}
 	
 	public String getNome() {
@@ -23,6 +23,14 @@ public class GrupoAtendentes extends EntidadeDominio{
 	}
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public List<Funcionario> getFuncionarios() {
+		return funcionarios;
+	}
+
+	public void setFuncionarios(List<Funcionario> funcionarios) {
+		this.funcionarios = funcionarios;
 	}
 	
 }

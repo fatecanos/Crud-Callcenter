@@ -4,7 +4,7 @@ import br.com.fatec.model.EntidadeDominio;
 
 public class Atendimento extends EntidadeDominio{
 	private GrupoAtendentes grupo;
-	private Chamado chamado;
+	private Chamado 		chamado;
 	
 	public Atendimento() {
 		super();
@@ -31,8 +31,5 @@ public class Atendimento extends EntidadeDominio{
 	public void setGrupo(GrupoAtendentes grupo) {
 		this.grupo = grupo;
 	}
-
-	
-	
 	
 }
