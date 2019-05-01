@@ -2,11 +2,20 @@ package br.com.fatec.model.dominio;
 
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 import br.com.fatec.model.EntidadeDominio;
 
+@Entity
+@Table(name="tbUsuarios")
 public class Usuario extends EntidadeDominio{
+	@Column(name = "nomeUsuario")
 	private String nome;
+	@Column(name = "senhaUsuario")
 	private String senha;
+	@Column(name = "perfisUsuario")
 	private List<Perfil> perfis;
 	
 	public Usuario() {
