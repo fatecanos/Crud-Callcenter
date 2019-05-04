@@ -1,3 +1,5 @@
+-- CRIAÇÃO DAS TABELAS - 04/05/2019 - LUCAS NOGUEIRA, lucasnogueiratdm@hotmail.com
+
 DROP DATABASE callcenter;
 CREATE DATABASE callcenter;
 USE callcenter;
