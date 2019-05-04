@@ -1,17 +1,25 @@
 package br.com.fatec.model.dominio;
 
-public class Cargo {
+import br.com.fatec.model.EntidadeDominio;
+
+public class Cargo extends EntidadeDominio{
 	private String nome;
 	private Setor setor;
 	
 	public Cargo() {
-		super();
+		
+	}
+	public Cargo(int id, String nome, Setor setor) {
+		super(id, true);
+		this.nome = nome;
+		this.setor = setor;
 	}
 	public Cargo(String nome, Setor setor) {
 		super();
 		this.nome = nome;
 		this.setor = setor;
 	}
+	
 	public String getNome() {
 		return nome;
 	}
