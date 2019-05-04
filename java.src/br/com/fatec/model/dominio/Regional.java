@@ -5,6 +5,10 @@ import br.com.fatec.model.EntidadeDominio;
 public class Regional extends EntidadeDominio{	
 	private String nome;
 	
+	public Regional() {
+		
+	}
+	
 	public Regional(String nome) {
 		super();
 		this.nome = nome;

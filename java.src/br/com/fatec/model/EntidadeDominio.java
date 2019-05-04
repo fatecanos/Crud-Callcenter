@@ -4,6 +4,15 @@ public class EntidadeDominio {
 	private int id;
 	private boolean isAtivo;
 	
+	public EntidadeDominio() {
+		
+	}
+	
+	public EntidadeDominio(int id, boolean isAtivo) {
+		this.id 		= id;
+		this.isAtivo 	= isAtivo;
+	}
+	
 	public int getId() {
 		return id;
 	}
