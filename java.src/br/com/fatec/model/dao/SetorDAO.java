@@ -11,6 +11,10 @@ import br.com.fatec.model.factory.FabricaConexao;
 public class SetorDAO {
 	protected Connection conn;
 	
+	public SetorDAO() {
+		this.conn = FabricaConexao.getConexao();
+	}
+	
 	public void salvar(Setor setor) {
 		String sql = "INSERT INTO tbSetor(nome, idRegional)VALUES(?,?);";
 		PreparedStatement pstm = null;

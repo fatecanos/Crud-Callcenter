@@ -1,16 +1,14 @@
 package br.com.fatec.model.dominio;
 
-import br.com.fatec.model.EntidadeDominio;
-
-public class Atendimento extends EntidadeDominio{
-	private GrupoAtendentes grupo;
+public class Atendimento {
+	private GrupoAtendimento grupo;
 	private Chamado 		chamado;
 	
 	public Atendimento() {
 		super();
 	}
 	
-	public Atendimento(GrupoAtendentes grupo, Chamado chamado) {
+	public Atendimento(GrupoAtendimento grupo, Chamado chamado) {
 		super();
 		this.grupo = grupo;
 		this.chamado = chamado;
@@ -24,11 +22,11 @@ public class Atendimento extends EntidadeDominio{
 		this.chamado = chamado;
 	}
 
-	public GrupoAtendentes getGrupo() {
+	public GrupoAtendimento getGrupo() {
 		return grupo;
 	}
 
-	public void setGrupo(GrupoAtendentes grupo) {
+	public void setGrupo(GrupoAtendimento grupo) {
 		this.grupo = grupo;
 	}
 	

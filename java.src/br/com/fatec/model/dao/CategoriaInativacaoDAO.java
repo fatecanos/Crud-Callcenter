@@ -12,6 +12,10 @@ import br.com.fatec.model.factory.FabricaConexao;
 public class CategoriaInativacaoDAO {
 	protected Connection conn;
 	
+	public CategoriaInativacaoDAO() {
+		this.conn = FabricaConexao.getConexao();
+	}
+	
 	public void salvar(CategoriaInativacao categoriaInativacao) {
 		String sql = "INSERT INTO tbCategoriaInativacao(nome) VALUES(?)";
 		PreparedStatement pstm = null;
