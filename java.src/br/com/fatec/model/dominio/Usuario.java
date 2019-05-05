@@ -41,6 +41,4 @@ public class Usuario extends EntidadeDominio {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	
-	
 }

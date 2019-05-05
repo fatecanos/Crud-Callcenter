@@ -2,15 +2,13 @@ package br.com.fatec.model.dominio;
 
 import br.com.fatec.model.EntidadeDominio;
 
-public class CategoriaInativacao extends EntidadeDominio{
+public class CategoriaInativacao extends EntidadeDominio {
+	
 	private String nome;
 	
-	public CategoriaInativacao() {
-		super();
-	}
+	public CategoriaInativacao() {}
 
 	public CategoriaInativacao(String nome) {
-		super();
 		this.nome = nome;
 	}
 
@@ -20,7 +18,5 @@ public class CategoriaInativacao extends EntidadeDominio{
 
 	public void setNome(String nome) {
 		this.nome = nome;
-	}
-	
-	
+	}	
 }

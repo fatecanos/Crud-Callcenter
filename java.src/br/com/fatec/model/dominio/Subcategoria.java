@@ -4,16 +4,14 @@ import java.util.Date;
 
 import br.com.fatec.model.EntidadeDominio;
 
-public class Subcategoria extends EntidadeDominio{
+public class Subcategoria extends EntidadeDominio {
+	
 	private String nome;
 	private Date prazoAtendimento;
 		
-	public Subcategoria() {
-		super();
-	}
+	public Subcategoria() {}
 
 	public Subcategoria(String nome, Date prazoAtendimento) {
-		super();
 		this.nome = nome;
 		this.prazoAtendimento = prazoAtendimento;
 	}
@@ -33,7 +31,4 @@ public class Subcategoria extends EntidadeDominio{
 	public void setPrazoAtendimento(Date prazoAtendimento) {
 		this.prazoAtendimento = prazoAtendimento;
 	}
-
-	
-	
 }

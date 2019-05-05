@@ -2,15 +2,13 @@ package br.com.fatec.model.dominio;
 
 import br.com.fatec.model.EntidadeDominio;
 
-public class Regional extends EntidadeDominio{	
+public class Regional extends EntidadeDominio {	
+	
 	private String nome;
 	
-	public Regional() {
-		
-	}
+	public Regional() {}
 	
 	public Regional(String nome) {
-		super();
 		this.nome = nome;
 	}
 
@@ -20,7 +18,5 @@ public class Regional extends EntidadeDominio{
 
 	public void setNome(String nome) {
 		this.nome = nome;
-	}
-	
-	
+	}	
 }

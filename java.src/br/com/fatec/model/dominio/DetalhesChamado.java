@@ -1,15 +1,13 @@
 package br.com.fatec.model.dominio;
 
 public class DetalhesChamado {
+	
 	private byte[] imagem;
 	private TipoImagem tipoImagem;
 	
-	public DetalhesChamado() {
-		super();
-	}
+	public DetalhesChamado() {}
 
 	public DetalhesChamado(byte[] imagem, TipoImagem tipoImagem) {
-		super();
 		this.imagem = imagem;
 		this.tipoImagem = tipoImagem;
 	}
@@ -28,6 +26,5 @@ public class DetalhesChamado {
 
 	public void setImagem(byte[] imagem) {
 		this.imagem = imagem;
-	}	
-	
+	}		
 }
