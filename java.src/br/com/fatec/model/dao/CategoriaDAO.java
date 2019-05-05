@@ -6,25 +6,24 @@ import java.sql.ResultSet;
 import java.util.LinkedList;
 import java.util.List;
 
-import br.com.fatec.model.dominio.Cargo;
+import br.com.fatec.model.dominio.Categoria;
 import br.com.fatec.model.factory.FabricaConexao;
 
-public class CargoDAO {
-
+public class CategoriaDAO {
+	
 	private Connection conn = null;
 	
-	public CargoDAO() {
+	public CategoriaDAO() {
 		conn = FabricaConexao.getConexao();
 	}
 
-	public void salvar(Cargo cargo) {
-		String sql = "INSERT INTO tbCargo(nome, idSetor) VALUES(?, ?)";
+	public void salvar(Categoria categoria) {
+		String sql = "INSERT INTO tbCategoria(nome) VALUES(?)";
 		PreparedStatement pstm = null;
 		
 		try {
 			pstm = conn.prepareStatement(sql);
-			pstm.setString(1, cargo.getNome());
-			pstm.setInt(2, cargo.getSetor().getId());
+			pstm.setString(1, categoria.getNome());
 			pstm.execute();
 		}
 		catch(Exception ex) {
@@ -34,27 +33,25 @@ public class CargoDAO {
 			FabricaConexao.fecharConexao(conn, pstm);
 		}
 	}
-
-	public List<Cargo> listar() {
-		String sql = "SELECT * FROM tbCargo";
+	
+	public List<Categoria> listar() {
+		String sql = "SELECT * FROM tbCategoria";
 		PreparedStatement pstm = null;
 		ResultSet rs = null; 
-		List<Cargo> cargos = new LinkedList<>();
+		List<Categoria> categorias = new LinkedList<>();
 		
 		try {
 			pstm = conn.prepareStatement(sql);
 			rs = pstm.executeQuery();
 			
 			while(rs.next()) {
-				Cargo c = new Cargo();
-				c.setId(rs.getInt("idCargo"));
+				Categoria c = new Categoria();
+				c.setId(rs.getInt("idCategoria"));
 				c.setNome(rs.getString("nome"));
-				c.setSetor(
-						new SetorDAO().buscarPorId(rs.getInt("idSetor")));
-				cargos.add(c);
+				categorias.add(c);
 			}
 			
-			return cargos;
+			return categorias;	
 		}
 		catch(Exception ex) {
 			ex.printStackTrace();
@@ -65,15 +62,13 @@ public class CargoDAO {
 		}
 	}
 
-	public void atualizar(Cargo cargo) {	
-		String sql = "UPDATE tbCargo SET(nome=?, idSetor=?) WHERE(id=?)";
+	public void atualizar(Categoria categoria) {	
+		String sql = "UPDATE tbCategoria SET(nome=?) WHERE(id=?)";
 		PreparedStatement pstm = null;
 		
 		try {
 			pstm = conn.prepareStatement(sql);
-			pstm.setString(1, cargo.getNome());
-			pstm.setInt(2, cargo.getSetor().getId());
-			pstm.setInt(3, cargo.getId());
+			pstm.setString(1, categoria.getNome());
 			pstm.execute();
 		}
 		catch(Exception ex) {
@@ -83,15 +78,14 @@ public class CargoDAO {
 			FabricaConexao.fecharConexao(conn, pstm);
 		}
 	}
-
-	public void excluir(Cargo cargo) {
-		String sql = "DELETE FROM tbCargo WHERE(nome=? AND idSetor=?)";
+	
+	public void excluir(Categoria categoria) {
+		String sql = "DELETE FROM tbCategoria WHERE(nome=?)";
 		PreparedStatement pstm = null;
 		
 		try {
 			pstm = conn.prepareStatement(sql);
-			pstm.setString(1, cargo.getNome());
-			pstm.setInt(2, cargo.getSetor().getId());
+			pstm.setString(1, categoria.getNome());
 			pstm.execute();
 		}
 		catch(Exception ex) {

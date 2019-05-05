@@ -9,24 +9,27 @@ import java.util.List;
 import br.com.fatec.model.dominio.Regional;
 import br.com.fatec.model.factory.FabricaConexao;
 
-public class RegionalDAO{
+public class RegionalDAO {
 	
-	protected Connection conn;
+	private Connection conn;
 	
 	public RegionalDAO() {
-		this.conn = FabricaConexao.getConexao();
+		conn = FabricaConexao.getConexao();
 	}
 
 	public void salvar(Regional regional) {
-		String sql = "INSERT INTO tbRegional(nome)VALUES(?)";
+		String sql = "INSERT INTO tbRegional(nome) VALUES(?)";
 		PreparedStatement pstm = null;
+		
 		try{
 			pstm = conn.prepareStatement(sql);
 			pstm.setString(1, regional.getNome());
-			pstm.executeQuery();
-		}catch(Exception ex) {
+			pstm.execute();
+		}
+		catch(Exception ex) {
 			ex.printStackTrace();
-		}finally {
+		}
+		finally {
 			FabricaConexao.fecharConexao(conn, pstm);
 		}
 	}
@@ -39,10 +42,12 @@ public class RegionalDAO{
 			pstm = conn.prepareStatement(sql);
 			pstm.setString(1, regional.getNome());
 			pstm.setInt(2, regional.getId());
-			pstm.executeQuery();
-		}catch(Exception ex) {
+			pstm.execute();
+		}
+		catch(Exception ex) {
 			ex.printStackTrace();
-		}finally {
+		}
+		finally {
 			FabricaConexao.fecharConexao(conn, pstm);
 		}
 	}
@@ -50,22 +55,26 @@ public class RegionalDAO{
 	public void excluir(Regional regional) {
 		String sql = "DELETE FROM tbRegional WHERE(nome=?)";
 		PreparedStatement pstm = null;
+		
 		try {
 			pstm = conn.prepareStatement(sql);
 			pstm.setString(1, regional.getNome());
-			pstm.executeQuery();
-		}catch(Exception ex) {
+			pstm.execute();
+		}
+		catch(Exception ex) {
 			ex.printStackTrace();
-		}finally {
+		}
+		finally {
 			FabricaConexao.fecharConexao(conn, pstm);
 		}
 	}
 	
 	public List<Regional> listar(){
-		String sql = "SELECT * FROM tbRegional;";
+		String sql = "SELECT * FROM tbRegional";
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
 		List<Regional> regionais = new LinkedList<>();
+		
 		try {
 			pstm = conn.prepareStatement(sql);
 			rs = pstm.executeQuery();
@@ -75,17 +84,20 @@ public class RegionalDAO{
 				r.setNome(rs.getString("nome"));
 				regionais.add(r);
 			}
+			
 			return regionais;
-		}catch(Exception ex) {
+		}
+		catch(Exception ex) {
 			ex.printStackTrace();
 			return null;
-		}finally {
+		}
+		finally {
 			FabricaConexao.fecharConexao(conn, pstm, rs);
 		}
 	}
 	
 	public Regional buscarPorId(int id) {
-		String sql = "SELECT(idRegional, nome) FROM tbRegional WHERE(idRegional=?);";
+		String sql = "SELECT(idRegional, nome) FROM tbRegional WHERE(idRegional=?)";
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
 		
@@ -97,14 +109,15 @@ public class RegionalDAO{
 			Regional regional = new Regional();
 			regional.setId(rs.getInt("id"));
 			regional.setNome(rs.getString("nome"));
-		
+			
 			return regional;
-		}catch(Exception ex) {
+		}
+		catch(Exception ex) {
 			ex.printStackTrace();
 			return null;
-		}finally {
+		}
+		finally {
 			FabricaConexao.fecharConexao(conn, pstm, rs);
 		}
 	}
-	
 }
