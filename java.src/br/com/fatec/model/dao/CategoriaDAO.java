@@ -14,7 +14,7 @@ public class CategoriaDAO {
 	private Connection conn = null;
 	
 	public CategoriaDAO() {
-		this.conn = FabricaConexao.getConexao();
+		conn = FabricaConexao.getConexao();
 	}
 
 	public void salvar(Categoria categoria) {
@@ -24,6 +24,7 @@ public class CategoriaDAO {
 		try {
 			pstm = conn.prepareStatement(sql);
 			pstm.setString(1, categoria.getNome());
+			pstm.execute();
 		}
 		catch(Exception ex) {
 			ex.printStackTrace();
@@ -32,7 +33,6 @@ public class CategoriaDAO {
 			FabricaConexao.fecharConexao(conn, pstm);
 		}
 	}
-
 	
 	public List<Categoria> listar() {
 		String sql = "SELECT * FROM tbCategoria";
@@ -62,7 +62,6 @@ public class CategoriaDAO {
 		}
 	}
 
-	
 	public void atualizar(Categoria categoria) {	
 		String sql = "UPDATE tbCategoria SET(nome=?) WHERE(id=?)";
 		PreparedStatement pstm = null;
@@ -70,6 +69,7 @@ public class CategoriaDAO {
 		try {
 			pstm = conn.prepareStatement(sql);
 			pstm.setString(1, categoria.getNome());
+			pstm.execute();
 		}
 		catch(Exception ex) {
 			ex.printStackTrace();
@@ -78,7 +78,6 @@ public class CategoriaDAO {
 			FabricaConexao.fecharConexao(conn, pstm);
 		}
 	}
-
 	
 	public void excluir(Categoria categoria) {
 		String sql = "DELETE FROM tbCategoria WHERE(nome=?)";
@@ -87,6 +86,7 @@ public class CategoriaDAO {
 		try {
 			pstm = conn.prepareStatement(sql);
 			pstm.setString(1, categoria.getNome());
+			pstm.execute();
 		}
 		catch(Exception ex) {
 			ex.printStackTrace();
