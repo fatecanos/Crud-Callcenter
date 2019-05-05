@@ -18,7 +18,9 @@ public class CategoriaDAO {
 	}
 
 	public void salvar(Categoria categoria) {
-		String sql = "INSERT INTO tbCategoria(nome) VALUES(?)";
+		String sql = "INSERT INTO "
+				   + "tbCategoria(nome) "
+				   + "VALUES(?)";
 		PreparedStatement pstm = null;
 		
 		try {
@@ -63,7 +65,9 @@ public class CategoriaDAO {
 	}
 
 	public void atualizar(Categoria categoria) {	
-		String sql = "UPDATE tbCategoria SET(nome=?) WHERE(id=?)";
+		String sql = "UPDATE tbCategoria "
+				   + "SET(nome=?) "
+				   + "WHERE(id=?)";
 		PreparedStatement pstm = null;
 		
 		try {
@@ -80,7 +84,8 @@ public class CategoriaDAO {
 	}
 	
 	public void excluir(Categoria categoria) {
-		String sql = "DELETE FROM tbCategoria WHERE(nome=?)";
+		String sql = "DELETE FROM tbCategoria "
+				   + "WHERE(nome=?)";
 		PreparedStatement pstm = null;
 		
 		try {

@@ -16,16 +16,18 @@ public class GrupoAtendimentoDAO {
 		String sql = "INSERT INTO "
 					+ "tbGrupoAtendimento"
 					+ "(nome, idFuncionarioGrupo)"
-					+ "VALUES(?,?)";
+					+ "VALUES (?,?)";
 		PreparedStatement pstm = null;
 		
 		try {
 			pstm = conn.prepareStatement(sql);
 			pstm.setString(1, grupo.getNome());
 			pstm.setInt(2, grupo.getFuncionarioGrupo().getFuncionario().getId());
-		}catch(Exception ex) {
+		}
+		catch(Exception ex) {
 			ex.printStackTrace();
-		}finally {
+		}
+		finally {
 			FabricaConexao.fecharConexao(conn, pstm);
 		}
 	}
@@ -39,9 +41,11 @@ public class GrupoAtendimentoDAO {
 			pstm.setString(1, grupo.getNome());
 			pstm.setInt(2, grupo.getFuncionarioGrupo().getId());
 			pstm.executeQuery();
-		}catch(Exception ex) {
+		}
+		catch(Exception ex) {
 			ex.printStackTrace();
-		}finally {
+		}
+		finally {
 			FabricaConexao.fecharConexao(conn, pstm);
 		}
 	}
@@ -49,13 +53,16 @@ public class GrupoAtendimentoDAO {
 	public void excluir(GrupoAtendimento grupo) {
 		String sql = "DELETE tbGrupoAtendimento WHERE(id=?)";
 		PreparedStatement pstm = null;
+		
 		try {
 			pstm = conn.prepareStatement(sql);
 			pstm.setInt(1, grupo.getId());
-			pstm.executeQuery();
-		}catch(Exception ex) {
+			pstm.execute();
+		}
+		catch(Exception ex) {
 			ex.printStackTrace();
-		}finally {
+		}
+		finally {
 			FabricaConexao.fecharConexao(conn, pstm);
 		}
 	}
