@@ -8,17 +8,13 @@ public class Categoria extends EntidadeDominio{
 	
 	private Subcategoria subCategoria; 
 	
-	public Categoria() {
-		super();
-	}
+	public Categoria() {}
 
 	public Categoria(String nome) {
-		super();
 		this.nome = nome;
 	}
 
 	public Categoria(String nome, Subcategoria subCategoria) {
-		super();
 		this.nome = nome;
 		this.subCategoria = subCategoria;
 	}
@@ -38,6 +34,4 @@ public class Categoria extends EntidadeDominio{
 	public void setSubCategoria(Subcategoria subCategoria) {
 		this.subCategoria = subCategoria;
 	}
-	
-	
 }

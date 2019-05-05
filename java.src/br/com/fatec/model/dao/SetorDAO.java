@@ -18,7 +18,9 @@ public class SetorDAO {
 	}
 	
 	public void salvar(Setor setor) {
-		String sql = "INSERT INTO tbSetor(nome, idRegional) VALUES(?, ?)";
+		String sql = "INSERT INTO "
+				   + "tbSetor(nome, idRegional)"
+				   + "VALUES(?, ?)";
 		PreparedStatement pstm = null;
 		
 		try {
@@ -36,7 +38,8 @@ public class SetorDAO {
 	}
 	
 	public void atualizar(Setor setor) {
-		String sql = "UPDATE tbSetor SET(nome=?, idRegional=?)";
+		String sql = "UPDATE tbSetor "
+				   + "SET(nome=?, idRegional=?)";
 		PreparedStatement pstm = null;
 		
 		try {
@@ -54,7 +57,8 @@ public class SetorDAO {
 	}
 	
 	public void excluir(Setor setor) {
-		String sql = "DELETE FROM tbSetor WHERE(nome=? AND idRegional=?)";
+		String sql = "DELETE FROM tbSetor "
+				   + "WHERE(nome=? AND idRegional=?)";
 		PreparedStatement pstm = null;
 		
 		try {
@@ -102,7 +106,8 @@ public class SetorDAO {
 	}
 	
 	public Setor buscarPorId(int id) {
-		String sql = "SELECT(idSetor, nome, idRegional) FROM tbSetor WHERE(idSetor=?)";
+		String sql = "SELECT(idSetor, nome, idRegional) "
+				   + "FROM tbSetor WHERE(idSetor=?)";
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
 		

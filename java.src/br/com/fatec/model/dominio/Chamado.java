@@ -4,16 +4,15 @@ import java.util.Date;
 
 import br.com.fatec.model.EntidadeDominio;
 
-public class Chamado extends EntidadeDominio{
+public class Chamado extends EntidadeDominio {
 	
-	private String 			nome;
-	private String 			descricao;
-	private Date 			dataInicio;
-	private Date 			dataFechamento;
-	
+	private String nome;
+	private String descricao;
+	private Date dataInicio;
+	private Date dataFechamento;
 	private DetalhesChamado detalhes;
-	private Status 			status;
-	private Categoria 		categoria;
+	private Status status;
+	private Categoria categoria;
 	
 	public String getNome() {
 		return nome;
@@ -70,7 +69,4 @@ public class Chamado extends EntidadeDominio{
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
-	
-	
-	
 }

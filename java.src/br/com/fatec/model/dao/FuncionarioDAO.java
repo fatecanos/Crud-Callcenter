@@ -2,9 +2,16 @@ package br.com.fatec.model.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+<<<<<<< HEAD
+=======
+import java.sql.ResultSet;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+>>>>>>> f50fd7b3d62a5076f99b85061ef3b8aec4daff21
 import java.sql.Date;
 
 import br.com.fatec.model.dominio.Funcionario;
+import br.com.fatec.model.dominio.FuncionarioGrupo;
 import br.com.fatec.model.factory.FabricaConexao;
 
 public class FuncionarioDAO {
@@ -43,6 +50,47 @@ public class FuncionarioDAO {
 		}
 		finally {
 			FabricaConexao.fecharConexao(conn, pstm);
+		}
+	}
+	
+	public List<Funcionario> listar() {
+		String sql = "SELECT * FROM tbFuncionario";
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		List<Funcionario> funcionarios = new LinkedList<>();
+		
+		try {
+			pstm = conn.prepareStatement(sql);
+			rs = pstm.executeQuery();
+			
+			while(rs.next()) {
+				Funcionario f = new Funcionario();
+				f.setId(rs.getInt("idFuncionario"));
+				f.setNome(rs.getString("nome"));
+				f.setCpf(rs.getString("cpf"));
+				
+				LocalDate date = rs.getDate("dataContratacao").toLocalDate();
+				f.setDataContratacao(date);
+				f.setMatricula(rs.getInt("matricula"));
+				f.setFuncionarioGrupo(
+						new FuncionarioGrupoDAO().buscarPorId(rs.getInt("idFuncionarioGrupo")));
+				f.setCategoriaInativacao(
+						new CategoriaInativacaoDAO().buscarPorId(rs.getInt("idCategoriaInativacao")));
+				f.setContaDeUsuario(
+						new UsuarioDAO().buscarPorId(rs.getInt("idUsuario")));
+				f.setResponsavelCadastro(
+						new UsuarioDAO().buscarPorId(rs.getInt("idUsuario")));
+				f.setCargo(
+						new CargoDAO().buscarPorId(rs.getInt("idCargo")));
+				
+				funcionarios.add(f);
+			}
+			
+			return funcionarios;
+		}
+		catch(Exception ex) {
+			ex.printStackTrace();
+			return null;
 		}
 	}
 }

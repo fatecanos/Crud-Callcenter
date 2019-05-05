@@ -4,9 +4,11 @@ import java.util.Date;
 
 import br.com.fatec.model.EntidadeDominio;
 
-public class Subcategoria extends EntidadeDominio{
+public class Subcategoria extends EntidadeDominio {
+	
 	private String nome;
 	private Date prazoAtendimento;
+<<<<<<< HEAD
 	private Categoria categoria;	
 	
 	public Subcategoria() {
@@ -15,6 +17,12 @@ public class Subcategoria extends EntidadeDominio{
 
 	public Subcategoria(String nome, Date prazoAtendimento, Categoria categoria) {
 		super();
+=======
+		
+	public Subcategoria() {}
+
+	public Subcategoria(String nome, Date prazoAtendimento) {
+>>>>>>> f50fd7b3d62a5076f99b85061ef3b8aec4daff21
 		this.nome = nome;
 		this.prazoAtendimento = prazoAtendimento;
 		this.categoria = categoria;
@@ -35,6 +43,7 @@ public class Subcategoria extends EntidadeDominio{
 	public void setPrazoAtendimento(Date prazoAtendimento) {
 		this.prazoAtendimento = prazoAtendimento;
 	}
+<<<<<<< HEAD
 
 	public Categoria getCategoria() {
 		return categoria;
@@ -47,3 +56,6 @@ public class Subcategoria extends EntidadeDominio{
 	
 	
 }
+=======
+}
+>>>>>>> f50fd7b3d62a5076f99b85061ef3b8aec4daff21

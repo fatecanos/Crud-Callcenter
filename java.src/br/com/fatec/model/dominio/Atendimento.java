@@ -1,15 +1,13 @@
 package br.com.fatec.model.dominio;
 
 public class Atendimento {
-	private GrupoAtendimento grupo;
-	private Chamado 		chamado;
 	
-	public Atendimento() {
-		super();
-	}
+	private GrupoAtendimento grupo;
+	private Chamado chamado;
+	
+	public Atendimento() {}
 	
 	public Atendimento(GrupoAtendimento grupo, Chamado chamado) {
-		super();
 		this.grupo = grupo;
 		this.chamado = chamado;
 	}
@@ -29,5 +27,4 @@ public class Atendimento {
 	public void setGrupo(GrupoAtendimento grupo) {
 		this.grupo = grupo;
 	}
-	
 }
