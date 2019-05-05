@@ -2,7 +2,9 @@ package br.com.fatec.model.dominio;
 
 import java.util.Date;
 
-public class Funcionario extends Usuario{
+import br.com.fatec.model.EntidadeDominio;
+
+public class Funcionario extends EntidadeDominio{
 	private Date dataContratacao;
 	private Integer matricula;
 	private String nome;

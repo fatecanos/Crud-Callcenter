@@ -64,15 +64,53 @@ public class GrupoAtendimentoDAO {
 		String sql = "SELECT * FROM tbGrupoAtendimento";
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
-		List<GrupoAtendimento> grupo = new LinkedList<>();
+		List<GrupoAtendimento> grupos = new LinkedList<>();
 		
 		try {
 			pstm = conn.prepareStatement(sql);
 			rs = pstm.executeQuery();
 			
 			while(rs.next()) {
-				
+				GrupoAtendimento grupo = new GrupoAtendimento();
+				grupo.setId(rs.getInt("idGrupoAtendimento"));
+				grupo.setNome(rs.getString("nome"));
+				grupo.setFuncionarioGrupo(
+						new FuncionarioGrupoDAO().buscarPorId(rs.getInt("idFuncionarioGrupo"))
+				);
+				grupos.add(grupo);
 			}
+			return grupos;
+		}catch(Exception ex) {
+			ex.printStackTrace();
+			return null;
+		}finally {
+			FabricaConexao.fecharConexao(conn, pstm, rs);
 		}
 	}
+	
+	public GrupoAtendimento buscarPorId(int id) {
+		String sql = "SELECT * FROM tbGrupoAtendimento WHERE(idGrupoAtendimento=?)";
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		
+		try {
+			pstm = conn.prepareStatement(sql);
+			rs = pstm.executeQuery();
+			
+			GrupoAtendimento grupo = new GrupoAtendimento();
+			grupo.setId(rs.getInt("idGrupoAtendimento"));
+			grupo.setNome(rs.getString("nome"));
+			grupo.setFuncionarioGrupo(
+					new FuncionarioGrupoDAO().buscarPorId(rs.getInt("idFuncionarioGrupo"))
+			);
+			return grupo;
+		}catch(Exception ex) {
+			ex.printStackTrace();
+			return null;
+		}finally {
+			FabricaConexao.fecharConexao(conn, pstm, rs);
+		}
+	}
+	
+	
 }

@@ -4,9 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-import com.mysql.cj.x.protobuf.MysqlxPrepare.Prepare;
-import com.mysql.cj.xdevapi.Result;
-
 import br.com.fatec.model.dominio.FuncionarioGrupo;
 import br.com.fatec.model.factory.FabricaConexao;
 
@@ -112,8 +109,10 @@ public class FuncionarioGrupoDAO {
 			funcionarioGrupo.setGrupo(
 					new GrupoAtendimentoDAO().buscarPorId(rs.getInt("idGrupoAtendimento"))
 			);
+			return funcionarioGrupo;
 		}catch(Exception ex) {
 			ex.printStackTrace();
+			return null;
 		}finally {
 			FabricaConexao.fecharConexao(conn, pstm);
 		}

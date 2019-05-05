@@ -14,10 +14,6 @@ public class CategoriaInativacaoDAO {
 	private Connection conn;
 	
 	public CategoriaInativacaoDAO() {
-		conn = FabricaConexao.getConexao();
-	}
-	
-	public CategoriaInativacaoDAO() {
 		this.conn = FabricaConexao.getConexao();
 	}
 	
