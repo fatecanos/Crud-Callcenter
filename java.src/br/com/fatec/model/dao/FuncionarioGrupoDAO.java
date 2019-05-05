@@ -65,16 +65,18 @@ public class FuncionarioGrupoDAO {
 	
 	public void alterar(Integer idGrupoAtendimento) {
 		String sql = "UPDATE tbFuncionarioGrupo"
-				+ "SET(idGrupoAtendimento=?)";
+				   + "SET(idGrupoAtendimento=?)";
 		PreparedStatement pstm = null;
 		
 		try {
 			pstm = conn.prepareStatement(sql);
 			pstm.setInt(1, idGrupoAtendimento);
-			pstm.executeQuery();
-		}catch(Exception ex){
+			pstm.execute();
+		}
+		catch(Exception ex){
 			ex.printStackTrace();
-		}finally {
+		}
+		finally {
 			FabricaConexao.fecharConexao(conn, pstm);
 		}
 	}
@@ -87,9 +89,11 @@ public class FuncionarioGrupoDAO {
 			pstm = conn.prepareStatement(sql);
 			pstm.setInt(1, id);
 			pstm.executeQuery();
-		}catch(Exception ex){
+		}
+		catch(Exception ex){
 			ex.printStackTrace();
-		}finally {
+		}
+		finally {
 			FabricaConexao.fecharConexao(conn, pstm);
 		}
 	}		
@@ -109,14 +113,16 @@ public class FuncionarioGrupoDAO {
 			funcionarioGrupo.setGrupo(
 					new GrupoAtendimentoDAO().buscarPorId(rs.getInt("idGrupoAtendimento"))
 			);
+			
 			return funcionarioGrupo;
 		}catch(Exception ex) {
-			ex.printStackTrace();
-			return null;
-		}finally {
-			FabricaConexao.fecharConexao(conn, pstm);
+				ex.printStackTrace();
+				return null;
+			}
+			finally {
+				FabricaConexao.fecharConexao(conn, pstm);
+			}
 		}
-	}
 	
 }
 

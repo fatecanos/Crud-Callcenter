@@ -82,9 +82,11 @@ CREATE TABLE if not exists tbFuncionario
     dataContratacao         varchar(100) not null,
     matricula               int(20) not null,
     email                   varchar(100) not null,
-    idFuncionarioGrupo      int not null,
-    idCategoriaInativacao   int,
-    idUsuario               int,
+
+    idFuncionarioGrupo          int not null,
+    idCategoriaInativacao       int,
+    idUsuario                   int,
+    idUsuarioDoResponsavel      int not null,
     
     CONSTRAINT PRIMARY KEY(idFuncionario),
     
@@ -95,6 +97,9 @@ CREATE TABLE if not exists tbFuncionario
     REFERENCES tbCategoriaInativacao(idCategoriaInativacao),
 
     CONSTRAINT FOREIGN KEY(idUsuario)
+    REFERENCES(tbUsuario),
+
+    CONSTRAINT FOREIGN KEY(idUsuarioDoResponsavel)
     REFERENCES(tbUsuario)
 );
 
@@ -106,11 +111,11 @@ CREATE TABLE if not exists tbCategoria
     CONSTRAINT PRIMARY KEY(idCategoria)
 );
 
-CREATE TABLE if not exists tbSubCategoria
+CREATE TABLE if not exists tbSubcategoria
 (
-    idSubCategoria      int not null AUTO_INCREMENT,
+    idSubcategoria      int not null AUTO_INCREMENT,
     nome                varchar(100) not null,
-    prazoAtendimento    varchar(50) not null,
+    prazoAtendimento    Date not null,
     idCategoria         int not null,
 
     CONSTRAINT PRIMARY KEY(idSubCategoria),

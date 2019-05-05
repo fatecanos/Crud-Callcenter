@@ -18,7 +18,9 @@ public class CategoriaDAO {
 	}
 
 	public void salvar(Categoria categoria) {
-		String sql = "INSERT INTO tbCategoria(nome) VALUES(?)";
+		String sql = "INSERT INTO "
+				   + "tbCategoria(nome) "
+				   + "VALUES(?)";
 		PreparedStatement pstm = null;
 		
 		try {
@@ -63,7 +65,9 @@ public class CategoriaDAO {
 	}
 
 	public void atualizar(Categoria categoria) {	
-		String sql = "UPDATE tbCategoria SET(nome=?) WHERE(id=?)";
+		String sql = "UPDATE tbCategoria "
+				   + "SET(nome=?) "
+				   + "WHERE(id=?)";
 		PreparedStatement pstm = null;
 		
 		try {
@@ -80,7 +84,8 @@ public class CategoriaDAO {
 	}
 	
 	public void excluir(Categoria categoria) {
-		String sql = "DELETE FROM tbCategoria WHERE(nome=?)";
+		String sql = "DELETE FROM tbCategoria "
+				   + "WHERE(nome=?)";
 		PreparedStatement pstm = null;
 		
 		try {
@@ -92,6 +97,28 @@ public class CategoriaDAO {
 			ex.printStackTrace();
 		}
 		finally {
+			FabricaConexao.fecharConexao(conn, pstm);
+		}
+	}
+	
+	public Categoria buscarPorId(int id) {
+		String sql = "SELECT (idCategoria, nome) FROM tbCategoria WHERE(idCategoria=?)";
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		try {
+			pstm = conn.prepareStatement(sql);
+			pstm.setInt(1, id);
+			pstm.executeQuery();
+			
+			Categoria cat = new Categoria();
+			cat.setId(rs.getInt("idCategoria"));
+			cat.setNome(rs.getString("nome"));
+			
+			return cat;
+		}catch(Exception ex) {
+			ex.printStackTrace();
+			return null;
+		}finally {
 			FabricaConexao.fecharConexao(conn, pstm);
 		}
 	}

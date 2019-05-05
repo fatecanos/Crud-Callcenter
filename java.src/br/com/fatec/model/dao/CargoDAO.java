@@ -18,7 +18,9 @@ public class CargoDAO {
 	}
 
 	public void salvar(Cargo cargo) {
-		String sql = "INSERT INTO tbCargo(nome, idSetor) VALUES(?, ?)";
+		String sql = "INSERT INTO "
+				   + "tbCargo(nome, idSetor) "
+				   + "VALUES (?, ?)";
 		PreparedStatement pstm = null;
 		
 		try {
@@ -66,7 +68,9 @@ public class CargoDAO {
 	}
 
 	public void atualizar(Cargo cargo) {	
-		String sql = "UPDATE tbCargo SET(nome=?, idSetor=?) WHERE(id=?)";
+		String sql = "UPDATE tbCargo "
+				   + "SET(nome=?, idSetor=?) "
+				   + "WHERE(id=?)";
 		PreparedStatement pstm = null;
 		
 		try {
@@ -85,7 +89,8 @@ public class CargoDAO {
 	}
 
 	public void excluir(Cargo cargo) {
-		String sql = "DELETE FROM tbCargo WHERE(nome=? AND idSetor=?)";
+		String sql = "DELETE FROM tbCargo "
+				   + "WHERE(nome=? AND idSetor=?)";
 		PreparedStatement pstm = null;
 		
 		try {
@@ -99,6 +104,33 @@ public class CargoDAO {
 		}
 		finally {
 			FabricaConexao.fecharConexao(conn, pstm);
+		}
+	}
+	
+	public Cargo buscarPorId(int id) {
+		String sql = "SELECT(idCargo, nome) "
+				   + "FROM tbCargo "
+				   + "WHERE(idCargo=?)";
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		
+		try {
+			pstm = conn.prepareStatement(sql);
+			pstm.setInt(1, id);
+			rs = pstm.executeQuery();
+			
+			Cargo cargo = new Cargo();
+			cargo.setId(rs.getInt("id"));
+			cargo.setNome(rs.getString("nome"));
+			
+			return cargo;
+		}
+		catch(Exception ex) {
+			ex.printStackTrace();
+			return null;
+		}
+		finally {
+			FabricaConexao.fecharConexao(conn, pstm, rs);
 		}
 	}
 }
