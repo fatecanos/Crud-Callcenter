@@ -1,6 +1,6 @@
 package br.com.fatec.model;
 
-public class EntidadeDominio {
+public abstract class EntidadeDominio {
 	
 	private int id;
 	private boolean isAtivo;

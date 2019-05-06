@@ -145,8 +145,6 @@ CREATE TABLE if not exists tbChamado
     REFERENCES tbCategoria(idCategoria)
 );
 
-
-
 -- many-to-many
 CREATE TABLE IF NOT EXISTS tbPerfilUsuario(
     idPerfilUsuario         int not null AUTO_INCREMENT,

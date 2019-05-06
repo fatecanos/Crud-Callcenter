@@ -2,12 +2,11 @@ package br.com.fatec.model.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-<<<<<<< HEAD
-=======
 import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
->>>>>>> f50fd7b3d62a5076f99b85061ef3b8aec4daff21
+import java.util.LinkedList;
+import java.util.List;
 import java.sql.Date;
 
 import br.com.fatec.model.dominio.Funcionario;
@@ -26,7 +25,7 @@ public class FuncionarioDAO {
 		String sql = "INSERT INTO "
 				+ "tbFuncionario(nome, cpf, dataContratacao, matricula, "
 				+ "email, idCargo, idFuncionarioGrupo, idCategoriaInativacao, "
-				+ "idUsuario, idUsuarioResponsavel, "
+				+ "idUsuario, idUsuarioResponsavel)"
 				+ "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		PreparedStatement pstm = null;
 		
@@ -72,16 +71,26 @@ public class FuncionarioDAO {
 				LocalDate date = rs.getDate("dataContratacao").toLocalDate();
 				f.setDataContratacao(date);
 				f.setMatricula(rs.getInt("matricula"));
+				
 				f.setFuncionarioGrupo(
-						new FuncionarioGrupoDAO().buscarPorId(rs.getInt("idFuncionarioGrupo")));
+						new FuncionarioGrupoDAO().buscarPorId(rs.getInt("idFuncionarioGrupo"))
+				);
+				
 				f.setCategoriaInativacao(
-						new CategoriaInativacaoDAO().buscarPorId(rs.getInt("idCategoriaInativacao")));
+						new CategoriaInativacaoDAO().buscarPorId(rs.getInt("idCategoriaInativacao"))		
+				);
+				
 				f.setContaDeUsuario(
-						new UsuarioDAO().buscarPorId(rs.getInt("idUsuario")));
+						new UsuarioDAO().buscarPorId(rs.getInt("idUsuario"))
+				);
+				
 				f.setResponsavelCadastro(
-						new UsuarioDAO().buscarPorId(rs.getInt("idUsuario")));
+						new UsuarioDAO().buscarPorId(rs.getInt("idUsuario"))
+				);
+				
 				f.setCargo(
-						new CargoDAO().buscarPorId(rs.getInt("idCargo")));
+						new CargoDAO().buscarPorId(rs.getInt("idCargo"))
+				);
 				
 				funcionarios.add(f);
 			}
@@ -91,6 +100,91 @@ public class FuncionarioDAO {
 		catch(Exception ex) {
 			ex.printStackTrace();
 			return null;
+		}finally {
+			FabricaConexao.fecharConexao(conn, pstm, rs);
+		}
+	}
+	
+	public void excluir(Funcionario funcionario) {
+		String sql = "DELETE tbFuncionario WHERE(idFuncionario=?)";
+		PreparedStatement pstm = null;
+		
+		try {
+			pstm = conn.prepareStatement(sql);
+			pstm.setInt(1, funcionario.getId());
+			pstm.execute();
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}finally {
+			FabricaConexao.fecharConexao(conn, pstm);
+		}
+	}
+	
+	public void atualizar(Funcionario funcionario) {
+		String sql = "UPDATE tbFuncionario "
+					+ "SET(nome=?, cpf=?, dataContratacao=?, matricula=?," 
+					+ "email=?, idCargo=?, idFuncionarioGrupo=?, idCategoriaInativacao=?," 
+					+ "idUsuario=?, idUsuarioResponsavel=?);";
+		PreparedStatement pstm = null;
+		
+		try {
+			pstm = conn.prepareStatement(sql);
+			pstm.setString(1, funcionario.getNome());
+			pstm.setString(2, funcionario.getCpf());
+			pstm.setString(3, funcionario.getDataContratacao().toString());//string
+			pstm.setInt(4, funcionario.getMatricula());
+			pstm.setString(5, funcionario.getEmail());
+			pstm.setInt(6, funcionario.getCargo().getId());
+			pstm.setInt(7, funcionario.getFuncionarioGrupo().getId());
+			pstm.setInt(8, funcionario.getCategoriaInativacao().getId());
+			pstm.setInt(9, funcionario.getContaDeUsuario().getId());
+			pstm.setInt(10, funcionario.getResponsavelCadastro().getId());
+		
+			pstm.execute();
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}finally {
+			FabricaConexao.fecharConexao(conn, pstm);
+		}
+	}
+	
+	public Funcionario buscarPorId(int id) {
+		String sql = "SELECT (idFuncionario, nome, cpf, dataContratacao, matricula," 
+				+ "email, idCargo, idFuncionarioGrupo, idCategoriaInativacao,"
+				+ "idUsuario, idUsuarioResponsavel) "
+				+ "FROM tbFuncionario WHERE(idFuncionario=?)";
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		try {
+			pstm = conn.prepareStatement(sql);
+			pstm.setInt(1, id);
+			rs = pstm.executeQuery();
+			
+			Funcionario func = new Funcionario();
+			func.setId(rs.getInt("idFuncionario"));
+			func.setNome(rs.getString("nome"));
+			func.setCpf(rs.getString("cpf"));
+			func.setDataContratacao(rs.getString("dataContratacao"));
+			func.setMatricula(rs.getInt("matricula"));
+			func.setEmail(rs.getString("email"));
+			func.setCargo(new CargoDAO().buscarPorId(rs.getInt("cargo")));
+			func.setFuncionarioGrupo(
+					new FuncionarioGrupoDAO().buscarPorId(rs.getInt("idFuncionarioGrupo"))
+			);
+			func.setCategoriaInativacao(
+					new CategoriaInativacaoDAO().buscarPorId(rs.getInt("idCategoriaInativacao"))
+			);
+			func.setContaDeUsuario(
+					new UsuarioDAO().buscarPorId(rs.getInt("idUsuario"))
+			);
+			func.setContaDeUsuario(
+					new UsuarioDAO().buscarPorId(rs.getInt("idUsuarioResponsavel"))
+			);
+			return func;
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}finally {
+			FabricaConexao.fecharConexao(conn, pstm, rs);
 		}
 	}
 }
