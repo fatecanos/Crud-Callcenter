@@ -1,21 +1,19 @@
 package br.com.fatec.model.dominio;
 
-import java.util.List;
-
 import br.com.fatec.model.EntidadeDominio;
 
 public class Usuario extends EntidadeDominio {
 	
 	private String nome;
 	private String senha;
-	private List<String> perfis;
+	private PerfilUsuario perfilUsuario;
 	
 	public Usuario() {}
 	
-	public Usuario(String nome, String senha, List<String> perfis) {
+	public Usuario(String nome, String senha, PerfilUsuario perfilUsuario) {
 		this.nome = nome;
 		this.senha = senha;
-		this.perfis = perfis;
+		this.perfilUsuario = perfilUsuario;
 	}
 
 	public String getNome() {
@@ -26,12 +24,12 @@ public class Usuario extends EntidadeDominio {
 		this.nome = nome;
 	}
 
-	public List<String> getPerfis() {
-		return perfis;
+	public PerfilUsuario getPerfilUsuario() {
+		return perfilUsuario;
 	}
 
-	public void setPerfis(List<String> perfis) {
-		this.perfis = perfis;
+	public void setPerfilUsuario(PerfilUsuario perfilUsuario) {
+		this.perfilUsuario = perfilUsuario;
 	}
 
 	public String getSenha() {
