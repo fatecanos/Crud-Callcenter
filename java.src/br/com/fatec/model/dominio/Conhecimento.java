@@ -1,7 +1,5 @@
 package br.com.fatec.model.dominio;
 
-import java.util.List;
-
 import br.com.fatec.model.EntidadeDominio;
 
 public class Conhecimento extends EntidadeDominio {
