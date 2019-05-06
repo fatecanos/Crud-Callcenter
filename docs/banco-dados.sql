@@ -71,7 +71,7 @@ CREATE TABLE if not exists tbGrupoAtendimento
     CONSTRAINT PRIMARY KEY(idGrupoAtendimento),
 
     CONSTRAINT FOREIGN KEY(idFuncionarioGrupo) 
-    REFERENCES(tbFuncionarioGrupo)
+    REFERENCES tbFuncionarioGrupo(idFuncionarioGrupo)
 );
 
 CREATE TABLE if not exists tbFuncionario
@@ -97,10 +97,10 @@ CREATE TABLE if not exists tbFuncionario
     REFERENCES tbCategoriaInativacao(idCategoriaInativacao),
 
     CONSTRAINT FOREIGN KEY(idUsuario)
-    REFERENCES(tbUsuario),
+    REFERENCES tbUsuario(idUsuario),
 
     CONSTRAINT FOREIGN KEY(idUsuarioDoResponsavel)
-    REFERENCES(tbUsuario)
+    REFERENCES tbUsuario(idUsuario)
 );
 
 CREATE TABLE if not exists tbCategoria
@@ -139,7 +139,7 @@ CREATE TABLE if not exists tbChamado
     CONSTRAINT PRIMARY KEY(idChamado),
 
     CONSTRAINT FOREIGN KEY(idGrupoAtendimento)
-    REFERENCES tbGrupoAtendimento(idGrupoAtendimento),
+    REFERENCES (tbGrupoAtendimento),
 
     CONSTRAINT FOREIGN KEY(idCategoria)
     REFERENCES tbCategoria(idCategoria)
@@ -154,10 +154,10 @@ CREATE TABLE IF NOT EXISTS tbPerfilUsuario(
     CONSTRAINT PRIMARY KEY(idPerfilUsuario),
     
     CONSTRAINT FOREIGN KEY(idUsuario)
-    REFERENCES(tbUsuario),
+    REFERENCES tbUsuario(idUsuario),
 
     CONSTRAINT FOREIGN KEY(idPerfil)
-    REFERENCES(tbPerfil)
+    REFERENCES tbPerfil(idPerfil)
 );
 
 CREATE TABLE if not exists tbUsuario(
@@ -169,7 +169,7 @@ CREATE TABLE if not exists tbUsuario(
     CONSTRAINT PRIMARY KEY(idUsuario),
     
     CONSTRAINT FOREIGN KEY(idPerfilUsuario)
-    REFERENCES(tbPerfilUsuario)
+    REFERENCES tbPerfilUsuario(idPerfilUsuario)
 );
 
 CREATE TABLE IF NOT EXISTS tbPerfil(
@@ -180,5 +180,22 @@ CREATE TABLE IF NOT EXISTS tbPerfil(
     CONSTRAINT PRIMARY KEY(idPerfil),
 
     CONSTRAINT FOREIGN KEY(idPerfilUsuario)
-    REFERENCES(tbPerfilUsuario)
+    REFERENCES tbPerfilUsuario(idPerfilUsuario)
+);
+
+CREATE TABLE IF NOT EXISTS tbConhecimento(
+    idConhecimento          int not null AUTO_INCREMENT,
+    nome                    varchar(100) not null,
+    descricao               varchar(150),
+    tags                    varchar(200),
+    idChamado               int not null,
+    idUsuarioResponsavel    int not null,
+
+    CONSTRAINT PRIMARY KEY(idConhecimento),
+
+    CONSTRAINT FOREIGN KEY(idChamado)
+    REFERENCES tbChamado(idChamado),
+
+    CONSTRAINT FOREIGN KEY(idUsuarioDoResponsavel)
+    REFERENCES tbUsuario(idUsuario)
 );

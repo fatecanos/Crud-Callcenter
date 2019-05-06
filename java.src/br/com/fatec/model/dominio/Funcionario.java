@@ -1,12 +1,12 @@
 package br.com.fatec.model.dominio;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 import br.com.fatec.model.EntidadeDominio;
 
 public class Funcionario extends EntidadeDominio {
 	
-	private LocalDate dataContratacao;
+	private Date dataContratacao;
 	private Integer matricula;
 	private String nome;
 	private String cpf;
@@ -19,51 +19,62 @@ public class Funcionario extends EntidadeDominio {
 	
 	public Funcionario() {}
 	
-	public Funcionario(LocalDate dataContratacao, Integer matricula, String nome, String cpf, String email, Cargo cargo) {
+	
+
+	public Funcionario(Date dataContratacao, Integer matricula, String nome, String cpf, String email,
+			FuncionarioGrupo funcionarioGrupo, CategoriaInativacao categoriaInativacao, Usuario responsavelCadastro,
+			Usuario contaDeUsuario, Cargo cargo) {
+		super();
 		this.dataContratacao = dataContratacao;
 		this.matricula = matricula;
 		this.nome = nome;
 		this.cpf = cpf;
 		this.email = email;
+		this.funcionarioGrupo = funcionarioGrupo;
+		this.categoriaInativacao = categoriaInativacao;
+		this.responsavelCadastro = responsavelCadastro;
+		this.contaDeUsuario = contaDeUsuario;
 		this.cargo = cargo;
 	}
 
-	public LocalDate getDataContratacao() {
+
+
+	public Date getDataContratacao() {
 		return dataContratacao;
 	}
-	
-	public void setDataContratacao(LocalDate dataContratacao) {
+
+	public void setDataContratacao(Date dataContratacao) {
 		this.dataContratacao = dataContratacao;
 	}
-	
+
 	public Integer getMatricula() {
 		return matricula;
 	}
-	
+
 	public void setMatricula(Integer matricula) {
 		this.matricula = matricula;
 	}
-	
+
 	public String getNome() {
 		return nome;
 	}
-	
+
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
+
 	public String getCpf() {
 		return cpf;
 	}
-	
+
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
-	
+
 	public String getEmail() {
 		return email;
 	}
-	
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
@@ -83,7 +94,7 @@ public class Funcionario extends EntidadeDominio {
 	public void setCategoriaInativacao(CategoriaInativacao categoriaInativacao) {
 		this.categoriaInativacao = categoriaInativacao;
 	}
-	
+
 	public Usuario getResponsavelCadastro() {
 		return responsavelCadastro;
 	}
@@ -107,4 +118,6 @@ public class Funcionario extends EntidadeDominio {
 	public void setCargo(Cargo cargo) {
 		this.cargo = cargo;
 	}
+	
+	
 }

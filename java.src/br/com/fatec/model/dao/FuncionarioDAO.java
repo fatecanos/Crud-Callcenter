@@ -164,7 +164,7 @@ public class FuncionarioDAO {
 			func.setId(rs.getInt("idFuncionario"));
 			func.setNome(rs.getString("nome"));
 			func.setCpf(rs.getString("cpf"));
-			func.setDataContratacao(rs.getString("dataContratacao"));
+			func.setDataContratacao(rs.getDate("dataContratacao"));
 			func.setMatricula(rs.getInt("matricula"));
 			func.setEmail(rs.getString("email"));
 			func.setCargo(new CargoDAO().buscarPorId(rs.getInt("cargo")));
