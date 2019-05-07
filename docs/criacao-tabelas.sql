@@ -137,7 +137,7 @@ CREATE TABLE if not exists tbChamado
     dataFechamento      varchar(50) not null,
     idGrupoAtendimento  int(6) not null,
     idCategoria         int(6) not null,
-    statusChamado       int(6) not null,
+    statusChamado       varchar(100) not null,
     detalhesChamado blob, 
 
     CONSTRAINT PRIMARY KEY(idChamado)
@@ -201,6 +201,10 @@ REFERENCES tbGrupoAtendimento(idGrupoAtendimento);
 ALTER TABLE tbChamado
 ADD CONSTRAINT fk_Categoria_chamado FOREIGN KEY(idCategoria)
 REFERENCES tbCategoria(idCategoria);
+
+ALTER TABLE tbChamado
+ADD CONSTRAINT fk_GrupoAtendimento FOREIGN KEY(idGrupoAtendimento)
+REFERENCES tbGrupoAtendimento(idGrupoAtendimento);
 
 ALTER TABLE tbConhecimento
 ADD CONSTRAINT fk_Chamado_conhecimento FOREIGN KEY(idChamado)

@@ -85,6 +85,7 @@ public class PerfilDAO {
 			return perfis;
 		}catch(Exception ex) {
 			ex.printStackTrace();
+			return null;
 		}finally {
 			FabricaConexao.fecharConexao(conn, pstm, rs);
 		}
@@ -109,6 +110,7 @@ public class PerfilDAO {
 			return p;
 		}catch(Exception ex) {
 			ex.printStackTrace();
+			return null;
 		}finally {
 			FabricaConexao.fecharConexao(conn, pstm, rs);
 		}

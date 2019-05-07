@@ -1,19 +1,26 @@
 package br.com.fatec.model.dominio;
 
-import java.util.Date;
-
 import br.com.fatec.model.EntidadeDominio;
 
 public class Chamado extends EntidadeDominio {
 	
 	private String nome;
 	private String descricao;
-	private Date dataInicio;
-	private Date dataFechamento;
-	private DetalhesChamado detalhes;
+	private String dataInicio;
+	private String dataFechamento;
+	private DetalhesChamado detalhes = null;
+	private GrupoAtendimento grupo;
 	private Status status;
 	private Categoria categoria;
 	
+	public GrupoAtendimento getGrupo() {
+		return grupo;
+	}
+
+	public void setGrupo(GrupoAtendimento grupo) {
+		this.grupo = grupo;
+	}
+
 	public String getNome() {
 		return nome;
 	}
@@ -30,19 +37,19 @@ public class Chamado extends EntidadeDominio {
 		this.descricao = descricao;
 	}
 	
-	public Date getDataInicio() {
+	public String getDataInicio() {
 		return dataInicio;
 	}
 	
-	public void setDataInicio(Date dataInicio) {
+	public void setDataInicio(String dataInicio) {
 		this.dataInicio = dataInicio;
 	}
 	
-	public Date getDataFechamento() {
+	public String getDataFechamento() {
 		return dataFechamento;
 	}
 	
-	public void setDataFechamento(Date dataFechamento) {
+	public void setDataFechamento(String dataFechamento) {
 		this.dataFechamento = dataFechamento;
 	}
 

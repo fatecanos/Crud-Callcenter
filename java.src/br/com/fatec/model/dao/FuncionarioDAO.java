@@ -183,6 +183,7 @@ public class FuncionarioDAO {
 			return func;
 		}catch(Exception ex) {
 			ex.printStackTrace();
+			return null;
 		}finally {
 			FabricaConexao.fecharConexao(conn, pstm, rs);
 		}

@@ -23,6 +23,7 @@ public class RegionalDAO {
 		
 		try{
 			pstm = conn.prepareStatement(sql);
+			
 			pstm.setString(1, regional.getNome());
 			pstm.execute();
 		}
