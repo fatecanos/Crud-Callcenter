@@ -6,7 +6,7 @@ import br.com.fatec.model.EntidadeDominio;
 
 public class Funcionario extends EntidadeDominio {
 	
-	private Date dataContratacao;
+	private String dataContratacao;
 	private Integer matricula;
 	private String nome;
 	private String cpf;
@@ -21,10 +21,9 @@ public class Funcionario extends EntidadeDominio {
 	
 	
 
-	public Funcionario(Date dataContratacao, Integer matricula, String nome, String cpf, String email,
+	public Funcionario(String dataContratacao, Integer matricula, String nome, String cpf, String email,
 			FuncionarioGrupo funcionarioGrupo, CategoriaInativacao categoriaInativacao, Usuario responsavelCadastro,
 			Usuario contaDeUsuario, Cargo cargo) {
-		super();
 		this.dataContratacao = dataContratacao;
 		this.matricula = matricula;
 		this.nome = nome;
@@ -39,11 +38,11 @@ public class Funcionario extends EntidadeDominio {
 
 
 
-	public Date getDataContratacao() {
+	public String getDataContratacao() {
 		return dataContratacao;
 	}
 
-	public void setDataContratacao(Date dataContratacao) {
+	public void setDataContratacao(String dataContratacao) {
 		this.dataContratacao = dataContratacao;
 	}
 

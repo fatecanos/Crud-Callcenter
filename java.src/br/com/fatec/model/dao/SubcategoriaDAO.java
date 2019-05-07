@@ -7,8 +7,6 @@ import java.sql.ResultSet;
 import java.util.LinkedList;
 import java.util.List;
 
-import com.mysql.cj.x.protobuf.MysqlxPrepare.Prepare;
-
 import br.com.fatec.model.dominio.Subcategoria;
 import br.com.fatec.model.factory.FabricaConexao;
 

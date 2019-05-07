@@ -3,14 +3,11 @@ package br.com.fatec.model.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.List;
 import java.sql.Date;
 
 import br.com.fatec.model.dominio.Funcionario;
-import br.com.fatec.model.dominio.FuncionarioGrupo;
 import br.com.fatec.model.factory.FabricaConexao;
 
 public class FuncionarioDAO {
@@ -67,9 +64,7 @@ public class FuncionarioDAO {
 				f.setId(rs.getInt("idFuncionario"));
 				f.setNome(rs.getString("nome"));
 				f.setCpf(rs.getString("cpf"));
-				
-				LocalDate date = rs.getDate("dataContratacao").toLocalDate();
-				f.setDataContratacao(date);
+				f.setDataContratacao(rs.getString("dataContratacao"));
 				f.setMatricula(rs.getInt("matricula"));
 				
 				f.setFuncionarioGrupo(
@@ -164,7 +159,7 @@ public class FuncionarioDAO {
 			func.setId(rs.getInt("idFuncionario"));
 			func.setNome(rs.getString("nome"));
 			func.setCpf(rs.getString("cpf"));
-			func.setDataContratacao(rs.getDate("dataContratacao"));
+			func.setDataContratacao(rs.getString("dataContratacao"));
 			func.setMatricula(rs.getInt("matricula"));
 			func.setEmail(rs.getString("email"));
 			func.setCargo(new CargoDAO().buscarPorId(rs.getInt("cargo")));

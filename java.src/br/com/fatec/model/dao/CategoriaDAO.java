@@ -105,21 +105,24 @@ public class CategoriaDAO {
 		String sql = "SELECT (idCategoria, nome) FROM tbCategoria WHERE(idCategoria=?)";
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
+		
 		try {
 			pstm = conn.prepareStatement(sql);
 			pstm.setInt(1, id);
-			pstm.executeQuery();
+			rs = pstm.executeQuery();
 			
 			Categoria cat = new Categoria();
 			cat.setId(rs.getInt("idCategoria"));
 			cat.setNome(rs.getString("nome"));
 			
 			return cat;
-		}catch(Exception ex) {
+		}
+		catch(Exception ex) {
 			ex.printStackTrace();
 			return null;
-		}finally {
-			FabricaConexao.fecharConexao(conn, pstm);
+		}
+		finally {
+			FabricaConexao.fecharConexao(conn, pstm, rs);
 		}
 	}
 }
